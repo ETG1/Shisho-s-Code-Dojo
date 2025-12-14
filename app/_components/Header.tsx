@@ -118,7 +118,9 @@ function Header() {
   </NavigationMenuList>
 </NavigationMenu>
       {/* Signup Button*/}
-      <Button className='font-game text-2xl'variant={'pixel'}>Sign Up</Button>
+      <Link href='sign-up'>
+  <Button className='font-game text-2xl' variant={'pixel'}>Sign Up</Button>
+</Link>
     </div>
   )
 }
