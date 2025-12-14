@@ -109,7 +109,7 @@ export default function SignUpPage() {
                     <p className="text-center text-xs text-gray-400">
                         Already have an account?{' '}
                         <Clerk.Link navigate="sign-in" className="font-bold underline underline-offset-2 hover:text-yellow-200">
-                            Sign in
+                            Log in
                         </Clerk.Link>
                     </p>
                 </SignUp.Step>
