@@ -15,9 +15,9 @@ export default function SignUpPage() {
                     name="start"
                     className="mx-auto w-full sm:w-96 space-y-6 bg-#120F1E] backdrop-blur-sm px-4 py-8 border-4 border-black shadow-[8px_8px_0_0_#000]"
                 >
-                    <header className="text-center flex flex-col items-center">
+                   <header className="text-center flex flex-col items-center">
                                           <Image src={'/logo.png'} alt='logo' width={40} height={40}/>
-                                           <h1 className="mt-3 text-base font-bold tracking-wide text-gray-400 uppercase">
+                                           <h1 className="mt-3  font-bold font-game text-2xl tracking-wide text-gray-400 uppercase">
                                                Sign up to Code Mastery Dojo
                                            </h1>
                                        </header>

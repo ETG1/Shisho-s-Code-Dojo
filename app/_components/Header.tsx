@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React from 'react'
@@ -12,7 +14,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
-
+import { UserButton, useUser } from '@clerk/nextjs'
 
 const courses = [
   {
@@ -71,56 +73,63 @@ const courses = [
   }
 ];
 
-
-
 function Header() {
+  const { user } = useUser();
+  console.log(user)
   return (
-    <div className='p-3 max-w-6xl flex justify-between items-center w-full mx-auto bg-[#000000]/60 backdrop-blur-sm border border-white/20 rounded-2xl  shadow-[0px_0px_0_0_#c69405,2px_2px_0_0_#9ca3af] z-50 fixed top-2 left-1/2 -translate-x-1/2'>
+    <div className='p-3 max-w-6xl flex justify-between items-center w-full mx-auto bg-[#000000]/60 backdrop-blur-sm border border-white/20 rounded-2xl shadow-[0px_0px_0_0_#c69405,2px_2px_0_0_#9ca3af] z-50 fixed mt-6 left-1/2 -translate-x-1/2'>
       <div className='flex gap-2 items-center'>
-        <Image src={'/logo.png'} alt='logo' width={40} height={40}/>
+        <Image src={'/logo.png'} alt='logo' width={40} height={40} />
         <h2 className='font-bold text-4xl font-game'>Shisho’s Code Dojo</h2>
       </div>
-      {/* Navber */}
-        <NavigationMenu>
-  <NavigationMenuList className='gap-4'>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className='bg-gray-400/10'>Courses</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <ul className='grid md:grid-cols-2 gap-2 p-4 sm:w-[400px] md:w-[500px] lg:w-[600px]'>
-          {courses.map((course, index) => (
-              <div key={index} className='p-2 hover:bg-accent rounded-lg cursor-pointer '>
-                <h2 className='font-game text-3xl'>{course.name}</h2>
-                <p className='text-xs text-gray-400'>{course.desc}</p>
-              </div>
-          ))}
-        </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuLink>
-      <Link href={'/projects'}>
-        Projects
-      </Link>
-    </NavigationMenuLink>
-    <NavigationMenuItem>
-      </NavigationMenuItem>
-    <NavigationMenuLink>
-      <Link href={'/pricing'}>
-        Pricing
-      </Link>
-    </NavigationMenuLink>
-    <NavigationMenuItem>
-    </NavigationMenuItem>
-    <NavigationMenuLink>
-      <Link href={'/contact us'}>
-        Contact Us 
-      </Link>
-    </NavigationMenuLink>
-  </NavigationMenuList>
-</NavigationMenu>
-      {/* Signup Button*/}
-      <Link href='sign-up'>
-  <Button className='font-game text-2xl' variant={'pixel'}>Sign Up</Button>
-</Link>
+      {/* Navbar */}
+      <NavigationMenu>
+        <NavigationMenuList className='gap-4'>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className='bg-gray-400/10'>Courses</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className='grid md:grid-cols-2 gap-2 p-4 sm:w-[400px] md:w-[500px] lg:w-[600px]'>
+                {courses.map((course, index) => (
+                  <div key={index} className='p-2 hover:bg-accent rounded-lg cursor-pointer'>
+                    <h2 className='font-game text-3xl'>{course.name}</h2>
+                    <p className='text-xs text-gray-400'>{course.desc}</p>
+                  </div>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuLink>
+            <Link href={'/projects'}>
+              Projects
+            </Link>
+          </NavigationMenuLink>
+          <NavigationMenuItem></NavigationMenuItem>
+          <NavigationMenuLink>
+            <Link href={'/pricing'}>
+              Pricing
+            </Link>
+          </NavigationMenuLink>
+          <NavigationMenuItem></NavigationMenuItem>
+          <NavigationMenuLink>
+            <Link href={'/contact us'}>
+              Contact Us
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuList>
+      </NavigationMenu>
+      {/* Signup Button */}
+      {!user ?
+        <Link href='/sign-in'>
+          <Button className='font-game text-2xl' variant={'pixel'}>Sign In</Button>
+        </Link>
+        :
+        <div className='flex gap-4 items-center'>
+          <Link href={'/dashboard'}>
+            <Button className='font-game text-2xl' variant={'pixel'}>Dashboard</Button>
+          </Link>
+          <UserButton/> 
+        </div>
+      }
     </div>
   )
 }
