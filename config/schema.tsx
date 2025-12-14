@@ -6,5 +6,6 @@ export const usersTable = pgTable("users", {
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
   points: integer().default(0),
+  imageUrl: varchar({ length: 500 }),
   subscription: varchar()
 });
