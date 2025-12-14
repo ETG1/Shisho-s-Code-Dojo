@@ -120,7 +120,7 @@ function Header() {
       {/* Signup Button */}
       {!user ?
         <Link href='/sign-in'>
-          <Button className='font-game text-2xl' variant={'pixel'}>Sign In</Button>
+          <Button className='font-game text-2xl' variant={'pixel'}>Log In</Button>
         </Link>
         :
         <div className='flex gap-4 items-center'>
