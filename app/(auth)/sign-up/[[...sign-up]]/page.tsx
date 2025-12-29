@@ -16,7 +16,7 @@ export default function SignUpPage() {
                     className="mx-auto w-full sm:w-96 space-y-6 bg-#120F1E] backdrop-blur-sm px-4 py-8 border-4 border-black shadow-[8px_8px_0_0_#000]"
                 >
                    <header className="text-center flex flex-col items-center">
-                                          <Image src={'/logo.png'} alt='logo' width={40} height={40}/>
+                                          <Image src={'/dojo.png'} alt='logo' width={40} height={40}/>
                                            <h1 className="mt-3  font-bold font-game text-2xl tracking-wide text-gray-400 uppercase">
                                                Sign up to Code Mastery Dojo
                                            </h1>
@@ -52,8 +52,8 @@ export default function SignUpPage() {
 
                     <p className="text-center text-xs text-gray-400">
                         Already have an account?{' '}
-                        <Clerk.Link navigate="sign-in" className="font-bold underline underline-offset-2 hover:text-yellow-200">
-                            Sign in
+                        <Clerk.Link navigate="sign-in" className="font-bold underline underline-offset-2 hover:text-gray-600">
+                            Log in
                         </Clerk.Link>
                     </p>
                 </SignUp.Step>

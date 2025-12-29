@@ -13,10 +13,10 @@ export default function SignInPage() {
             <SignIn.Root>
                 <SignIn.Step
                     name="start"
-                    className="mx-auto w-full sm:w-96 space-y-6 bg-[#120F1E] backdrop-blur-sm px-4 py-8 border-4 border-black shadow-[8px_8px_0_0_#000]"
+                    className="mx-auto w-full sm:w-96 space-y-6 backdrop-blur-sm px-4 py-8 border-4 border-black shadow-[8px_8px_0_0_#000]"
                 >
                     <header className="text-center flex flex-col items-center">
-                       <Image src={'/logo.png'} alt='logo' width={40} height={40}/>
+                       <Image src={'/dojo.png'} alt='logo' width={40} height={40}/>
                         <h1 className="mt-3  font-bold font-game text-2xl tracking-wide text-gray-400 uppercase">
                             Log in to Code Mastery Dojo
                         </h1>

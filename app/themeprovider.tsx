@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs"
 import axios from "axios"
 import { useEffect } from "react"
 import { UserDetailContext } from "@/context/UserDetailContext";
+import Header from "./_components/Header";
 
 export function ThemeProvider({
   children,
@@ -28,9 +29,13 @@ export function ThemeProvider({
   return ( 
     <NextThemesProvider
     {...props}>
-      <UserDetailContext value={{userDetail, setUserDetail}}>
+      <UserDetailContext.Provider value={{userDetail, setUserDetail}}>
+        <div className="flex flex-col items-center">
+     	 {/* Header / Navbar */}
+      	<Header/>
+        </div>
         {children}
-      </UserDetailContext>
+      </UserDetailContext.Provider>
   </NextThemesProvider>
 )
 
