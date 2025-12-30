@@ -13,7 +13,7 @@ function EnrolledCourses() {
         <div className='flex flex-col items-center gap-3 p-4 border rounded-2xl bg-zinc-900'>
             <Image src={'/books.png'} alt='books' width={90} height={90}/>
             <h2 className='font-game text-2xl text-gray-400'>You dont have any enrolled courses</h2>
-            <Link href={'/'}>
+            <Link href={'/courses'}>
                 <Button variant={'pixel'} className='font-game text-xl'>
                     Browse Courses
                 </Button>
