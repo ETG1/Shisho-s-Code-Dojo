@@ -85,10 +85,10 @@ function Header() {
       </div>
       </Link>
       {/* Navbar */}
-      <NavigationMenu>
+      <NavigationMenu className='font-game'>
         <NavigationMenuList className='gap-4'>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className='bg-gray-400/10'>Courses</NavigationMenuTrigger>
+            <NavigationMenuTrigger className='bg-gray-400/10 text-xl'>Courses</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className='grid md:grid-cols-2 gap-2 p-4 sm:w-[400px] md:w-[500px] lg:w-[600px]'>
                 {courses.map((course, index) => (
@@ -101,19 +101,19 @@ function Header() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuLink>
-            <Link href={'/projects'}>
+            <Link href={'/projects'} className='text-xl'>
               Projects
             </Link>
           </NavigationMenuLink>
           <NavigationMenuItem></NavigationMenuItem>
           <NavigationMenuLink>
-            <Link href={'/pricing'}>
+            <Link href={'/pricing'} className='text-xl'>
               Pricing
             </Link>
           </NavigationMenuLink>
           <NavigationMenuItem></NavigationMenuItem>
           <NavigationMenuLink>
-            <Link href={'/contact us'}>
+            <Link href={'/contact us'}className='text-xl'>
               Contact Us
             </Link>
           </NavigationMenuLink>

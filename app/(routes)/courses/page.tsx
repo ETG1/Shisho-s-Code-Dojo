@@ -1,4 +1,4 @@
-import CourseList from '@/app/api/course/CourseList'
+import CourseList from '@/app/(routes)/courses/_components/CourseList'
 import Image from 'next/image'
 import React from 'react'
 
