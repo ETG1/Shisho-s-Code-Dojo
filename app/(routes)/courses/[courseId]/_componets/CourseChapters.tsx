@@ -33,7 +33,7 @@ function CourseChapters({ loading, courseDetails }: Props) {
     {courseDetails?.chapters?.map((chapter, index)=> (
       <Accordion type="single" collapsible key={index}>
         <AccordionItem value="item-1">
-          <AccordionTrigger className='p-3 hover:bg-zinc-900 font-game text-3xl rounded-xl'>
+          <AccordionTrigger className='p-3 hover:bg-zinc-900 hover:no-underline font-game text-3xl rounded-xl'>
             <div>
               <h2 className='h-10 w-10 bg-zinc-800 flex items-center justify-center rounded-xl'>
                 {index+1}

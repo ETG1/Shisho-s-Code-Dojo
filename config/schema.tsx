@@ -1,5 +1,5 @@
 import { sub } from "date-fns";
-import { integer, json, pgTable, varchar } from "drizzle-orm/pg-core";
+import { integer, json, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { title } from "process";
 
 export const usersTable = pgTable("users", {
@@ -28,4 +28,12 @@ export const CourseChaptersTable = pgTable('courseChapters', {
   name: varchar(),
   desc: varchar(),
   exercises: json(),
+})
+
+export const EnrolledCourseTable = pgTable('enrollCourse',{
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  courseId: integer(),
+  userId: varchar(),
+  enrolledDate: timestamp().defaultNow(),
+  xpEarned: integer()
 })

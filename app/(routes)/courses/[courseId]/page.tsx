@@ -31,7 +31,9 @@ function CourseDetails() {
     }
   return (
     <div>
-        <CourseDetailsBanner loading={loading} courseDetails={courseDetails}/>
+        <CourseDetailsBanner loading={loading} courseDetails={courseDetails}
+        refreshData={()=> GetCourseDetails()}
+        />
         <div className='grid grid-cols-3 p-10 md:px-24 lg:px-36 gap-6'>
           <div className='col-span-2'>
             <CourseChapters loading={loading} courseDetails={courseDetails}/>

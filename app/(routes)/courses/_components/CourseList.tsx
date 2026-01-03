@@ -13,8 +13,15 @@ export type Course = {
     desc: string,
     bannerImage: string,
     tags: string,
-    level: string
-    chapters?: Chapter[]
+    level: string,
+    chapters?: Chapter[],
+    userEnrolled?: boolean,
+    courseEnrolledInfo?: CourseEnrolledInfo[]
+}
+
+type CourseEnrolledInfo = {
+    xpEarned: number,
+    enrolledDate: any,
 }
 
 type Chapter = {

@@ -1,11 +1,14 @@
+import EnrolledCourses from "@/app/(routes)/dashboard/_components/EnrolledCourses";
 import { db } from "@/config/db";
-import { CourseChaptersTable, CourseTable } from "@/config/schema";
-import { eq } from "drizzle-orm"; 
+import { CourseChaptersTable, CourseTable, EnrolledCourseTable } from "@/config/schema";
+import { currentUser } from "@clerk/nextjs/server";
+import { and, eq, asc, SQL } from "drizzle-orm"; 
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const courseIdParam = searchParams.get('courseid');
+    const user = await currentUser();
 
     if (courseIdParam) {
         const courseId = parseInt(courseIdParam, 10);
@@ -22,12 +25,24 @@ export async function GET(req: NextRequest) {
         }
 
         const chapterResult = await db.select().from(CourseChaptersTable)
-            .where(eq(CourseChaptersTable.courseId, courseId));
+            .where(eq(CourseChaptersTable.courseId, courseId))
+            .orderBy(asc(CourseChaptersTable.chapterId));
+
+        const enrolledCourse = await db.select().from(EnrolledCourseTable)
+            .where(and(
+                eq(EnrolledCourseTable?.courseId, courseId),
+                //@ts-ignore
+                eq(EnrolledCourseTable.userId, user?.primaryEmailAddress?.emailAddress)
+            ))
+
+        const isEnrolledCourse = enrolledCourse?.length>0?true:false
 
         return NextResponse.json(
             {
                 ...result[0],
-                chapters: chapterResult
+                chapters: chapterResult,
+                userEnrolled: isEnrolledCourse,
+                courseEnrolledInfo: enrolledCourse
             }
         );
     }
