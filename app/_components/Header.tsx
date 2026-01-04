@@ -77,7 +77,7 @@ function Header() {
   const { user } = useUser();
   console.log(user)
   return (
-    <div className='p-3 max-w-6xl flex justify-between items-center w-full mx-auto bg-[#000000]/60 backdrop-blur-sm border border-white/20 rounded-2xl shadow-[0px_0px_0_0_#c69405,2px_2px_0_0_#9ca3af] z-50 fixed mt-4 left-1/2 -translate-x-1/2'>
+    <div className='p-2 px-3 max-w-6xl flex justify-between items-center w-full mx-auto bg-[#000000]/60 backdrop-blur-sm border border-white/20 rounded-2xl shadow-[0px_0px_0_0_#c69405,2px_2px_0_0_#9ca3af] z-50 fixed mt-4 left-1/2 -translate-x-1/2'>
       <Link href={'/'}>
       <div className='flex gap-3 items-center'>
         <Image src={'/dojo.png'} alt='logo' width={35} height={35} />

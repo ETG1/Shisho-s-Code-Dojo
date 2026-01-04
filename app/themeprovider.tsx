@@ -7,6 +7,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { UserDetailContext } from "@/context/UserDetailContext";
 import Header from "./_components/Header";
+import LetterGlitch from "./_components/LetterGlitch";
 
 export function ThemeProvider({
   children,
@@ -33,8 +34,10 @@ export function ThemeProvider({
         <div className="flex flex-col items-center">
      	 {/* Header / Navbar */}
       	<Header/>
+        
         </div>
         {children}
+        
       </UserDetailContext.Provider>
   </NextThemesProvider>
 )

@@ -14,6 +14,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Item } from '@radix-ui/react-navigation-menu'
 
 type Props = {
   loading: boolean,
@@ -21,6 +22,40 @@ type Props = {
 }
 
 function CourseChapters({ loading, courseDetails }: Props) {
+
+  
+const EnableExercise = (
+    chapterIndex: number,
+    exerciseIndex: number,
+    chapterExercisesLength: number
+) => {
+    const completed = courseDetails?.completedExercises;
+
+    // If nothing is completed, enable FIRST exercise ONLY
+    if (!completed || completed.length === 0) {
+        return chapterIndex === 0 && exerciseIndex === 0;
+    }
+
+    // last completed
+    const last = completed[completed.length - 1];
+
+    // Convert to global exercise number
+    const currentExerciseNumber =
+        chapterIndex * chapterExercisesLength + exerciseIndex + 1;
+
+    const lastCompletedNumber =
+        (last.chapterId - 1) * chapterExercisesLength + last.exerciseId;
+
+    return currentExerciseNumber === lastCompletedNumber + 2;
+};
+
+    const isExerciseCompleted = (chapterId:number, exerciseId:number) =>{
+      const completeChapters = courseDetails?.completedExercises;
+      const completeChapter = completeChapters?.find(Item=>(Item.chapterId==chapterId && Item.exerciseId==exerciseId))
+      return completeChapter ? true:false
+    }
+
+
   return (
     <div>
       {courseDetails?.chapters?.length === 0 ? (
@@ -48,11 +83,18 @@ function CourseChapters({ loading, courseDetails }: Props) {
                   <h2 className='text-2xl'>Excercise {index* chapter?.exercises?.length+indexExc + 1}</h2>
                   <h2 className='text-2xl'>{exc.name}</h2>
                   </div>
-                  {/*<Link href={''}>
+                  
+                  {EnableExercise(index,indexExc,chapter?.exercises?.length)?<Link href={''}>
                     <Button variant={'pixel'}>
                       {exc?.xp} xp
                     </Button>
-                  </Link>*/}
+                  </Link>:
+                  isExerciseCompleted(chapter?.chapterId, index + 1)?
+                    <Link href={''}>
+                    <Button variant={'pixel'} className='bg-green-600'>
+                      Completed
+                    </Button>
+                  </Link>:
                   <Tooltip>
                     <TooltipTrigger asChild>
                   <Link href={''}>
@@ -64,7 +106,7 @@ function CourseChapters({ loading, courseDetails }: Props) {
                     <TooltipContent className='font-game text-lg'>
                       <p>Please Enroll First</p>
                     </TooltipContent>
-                  </Tooltip>
+                  </Tooltip>}
                 </div>
               ))}
             </div>
