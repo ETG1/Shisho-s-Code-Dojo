@@ -4,18 +4,6 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/',
-  '/dashboard',
-  '/api/course',
-  '/courses',
-  '/courses/1',
-  '/courses/2',
-  '/courses/3',
-  '/courses/4',
-  '/courses/(.*)/(.*)',  //  dynamic exercise routes
-  '/api/admin/save-exercises',
-  '/courses/(.*)/(.*)/(.*)',  // dynamic exercise routes
-  '/api/exercise',
-  '/api/course' 
 ])
 
 export default clerkMiddleware(async (auth, req) => {
