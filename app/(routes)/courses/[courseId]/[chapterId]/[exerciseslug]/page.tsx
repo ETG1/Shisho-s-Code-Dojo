@@ -2,8 +2,7 @@
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import SplitterLayout from 'react-splitter-layout';
-import 'react-splitter-layout/lib/index.css';
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { exercise } from '../../../_components/CourseList';
 import ContentSection from './_components/ContentSection';
 
@@ -61,13 +60,15 @@ function Playground() {
 
   return (
     <div className='border-t-4 mt-22'>
-     <SplitterLayout percentage
-        primaryMinSize={40}
-        secondaryInitialSize={60}
-     >
-        <div><ContentSection courseExerciseData={courseExerciseData} loading={loading}/></div>
-        <div>Code Editor</div>
-      </SplitterLayout>
+      <ResizablePanelGroup direction="horizontal" className="h-full">
+        <ResizablePanel defaultSize={40} minSize={20}>
+          <ContentSection courseExerciseData={courseExerciseData} loading={loading} />
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={60} minSize={20}>
+          <div>Code Editor</div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   )
 }
