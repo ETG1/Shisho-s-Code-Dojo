@@ -84,7 +84,8 @@ const EnableExercise = (
                   <h2 className='text-2xl'>{exc.name}</h2>
                   </div>
                   
-                  {EnableExercise(index,indexExc,chapter?.exercises?.length)?<Link href={''}>
+                  {EnableExercise(index,indexExc,chapter?.exercises?.length)?
+                  <Link href={'/courses/'+courseDetails?.courseId+'/' + chapter?.chapterId + '/' +exc?.slug}>
                     <Button variant={'pixel'}>
                       {exc?.xp} xp
                     </Button>

@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import Link from 'next/link'
 import { UserButton, useUser } from '@clerk/nextjs'
+import { useParams, usePathname } from 'next/navigation'
 
 const courses = [
   {
@@ -75,7 +76,8 @@ const courses = [
 
 function Header() {
   const { user } = useUser();
-  console.log(user)
+  const path = usePathname();
+  const { exerciseslug } = useParams();
   return (
     <div className='p-2 px-3 max-w-6xl flex justify-between items-center w-full mx-auto bg-[#000000]/60 backdrop-blur-sm border border-white/20 rounded-2xl shadow-[0px_0px_0_0_#c69405,2px_2px_0_0_#9ca3af] z-50 fixed mt-4 left-1/2 -translate-x-1/2'>
       <Link href={'/'}>
@@ -85,7 +87,7 @@ function Header() {
       </div>
       </Link>
       {/* Navbar */}
-      <NavigationMenu className='font-game'>
+      {!exerciseslug ? <NavigationMenu className='font-game'>
         <NavigationMenuList className='gap-4'>
           <NavigationMenuItem>
             <NavigationMenuTrigger className='bg-gray-400/10 text-xl'>Courses</NavigationMenuTrigger>
@@ -118,7 +120,9 @@ function Header() {
             </Link>
           </NavigationMenuLink>
         </NavigationMenuList>
-      </NavigationMenu>
+      </NavigationMenu>:
+      <h2 className='font-game text-3xl'>{exerciseslug?.toString()?.replaceAll("-", ' ').toLocaleUpperCase()}</h2>
+      }
       {/* Signup Button */}
       {!user ?
         <Link href='/sign-in'>
