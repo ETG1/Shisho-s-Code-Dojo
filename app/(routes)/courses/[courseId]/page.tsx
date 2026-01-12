@@ -18,9 +18,24 @@ function CourseDetails() {
     const {courseId} = useParams();
     const [courseDetails,setCourseDetails] = useState<Course>();
     const [loading,setLoading] = useState(false);
-    useEffect(()=>{
-      courseId&& GetCourseDetails()
-    }, [courseId])
+    useEffect(() => {
+  if (courseId) {
+    GetCourseDetails();
+  }
+}, [courseId]);
+
+// Add a window focus listener to refresh data when returning to the page
+useEffect(() => {
+  const handleFocus = () => {
+    if (courseId) {
+      GetCourseDetails();
+    }
+  };
+
+  window.addEventListener('focus', handleFocus);
+  return () => window.removeEventListener('focus', handleFocus);
+}, [courseId]);
+
 
     const GetCourseDetails = async() => {
       setLoading(true);
