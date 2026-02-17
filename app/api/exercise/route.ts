@@ -1,11 +1,13 @@
 import { db } from "@/config/db";
-import { CompletedExerciseTable, CourseChaptersTable, ExerciseTable } from "@/config/schema";
+import { CompletedExerciseTable, CourseChaptersTable, CourseTable, ExerciseTable } from "@/config/schema";
 import { and, eq } from "drizzle-orm";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     const {courseId,chapterId,exerciseId} = await req.json();
+    const courseInfo = await db.select().from(CourseTable)
+    .where(eq(CourseTable.courseId,courseId))
     const user = await currentUser();
     const courseIdInt = parseInt(courseId, 10);
 
@@ -30,6 +32,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
         ...courseResult[0],
         exerciseData:exerciseResult[0],
-        completedExercise: completedExercise
+        completedExercise: completedExercise,
+        editorType: courseInfo[0]?.editorType
     })
 }

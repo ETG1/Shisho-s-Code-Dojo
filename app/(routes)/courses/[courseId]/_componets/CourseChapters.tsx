@@ -28,6 +28,11 @@ function CourseChapters({ loading, courseDetails }: Props) {
     exerciseIndex: number,
     chapterExercisesLength: number
   ) => {
+    // CHECK ENROLLMENT FIRST - If not enrolled, disable ALL exercises
+    if (!courseDetails?.userEnrolled) {
+      return false;
+    }
+
     const completed = courseDetails?.completedExercises;
 
     // If nothing is completed, enable FIRST exercise ONLY

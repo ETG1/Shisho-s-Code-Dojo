@@ -60,7 +60,8 @@ function CodeEditor({courseExerciseData, loading, refetchData}:Props) {
   return (
     <div>
       <SandpackProvider
-        template='static'
+        //@ts-ignore
+        template={courseExerciseData?.editorType??'static'}
         theme={'dark'}   
         style={{height: '100vh'}}
         files={courseExerciseData?.exerciseData?.exercisesContent?.starterCode}
