@@ -47,7 +47,7 @@ export type exercise = {
     difficulty: string
 }
 
-function CourseList() {
+function CourseList({ limit }: { limit?: number }) {
 
     const [courseList, setCourseList] = useState<Course[]>([])
     const [loading, setLoading] = useState(false);
@@ -62,9 +62,12 @@ function CourseList() {
         setCourseList(result?.data);
         setLoading(false);
     }
+    // Apply limit if provided
+    const displayedCourses = limit ? courseList.slice(0, limit) : courseList;
+
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 mt-3'>
-        {courseList?.map((course, index) => (
+        {displayedCourses?.map((course, index) => (
             <Link href={'/courses/'+course?.courseId} key={index}>
             <div  className='border-4  rounded-md hover:bg-zinc-900 cursor-pointer'>
                 <Image src={(course?.bannerImage).trimEnd()} alt={course?.title} width={400} height={400} className='w-full h-[200px] object-cover rounded-t-md'/>

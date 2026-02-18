@@ -8,9 +8,10 @@ function UserStatus() {
   return (
     <div className='p-4 border-4 rounded-2xl mt-2'>
         <div className='flex gap-3 items-center'>
-        <Image src={'/alex_walk.gif'} alt='walking_user' width={100} height={100}/>
-        <h2 className='font-game text-2xl'>{user?.primaryEmailAddress?.emailAddress}</h2>
-        </div>
+    <Image src={'/alex_walk.gif'} alt='walking_user' width={100} height={100}/>
+    <h2 className='font-game text-2xl truncate min-w-0 flex-1'>{user?.primaryEmailAddress?.emailAddress}</h2>
+</div>
+
         <div className='grid grid-cols-2 gap-6'>
             <div className='flex gap-3 items-center'>
                 <Image src={'/star.png'} alt='star' width={35} height={35}/>
